@@ -1,0 +1,11 @@
+.mainCarousel {
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr;
+    gap: 4px;
+}
+
+.inCarousel {
+    display: flex;
+    gap: 8px;
+    justify-content: space-around;
+}

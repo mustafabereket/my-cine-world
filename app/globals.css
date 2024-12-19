@@ -18,12 +18,14 @@ body {
 
 body {
   color: var(--foreground);
-  background: var(--background);
+  background-color: beige;
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+button:hover{
+  cursor: pointer;
+}
 * {
   box-sizing: border-box;
   padding: 0;
