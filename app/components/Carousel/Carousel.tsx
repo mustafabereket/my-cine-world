@@ -5,56 +5,56 @@ import styles from "./Carousel.module.css";
 import MovieCard from "../MovieCard/MovieCard";
 
 const Carousel = ({ movies }) => {
-  const [windowSize, setWindowSize] = useState({ start: 0, end: 4 });
-  const [inCarousel, setInCarousel] = useState(
-    movies.slice(windowSize.start, windowSize.end)
-  );
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(4);
 
+  // Adjust the number of visible movies based on screen width
   useEffect(() => {
-    setInCarousel(movies.slice(windowSize.start, windowSize.end));
-  }, [windowSize]);
+    const updateVisibleCount = () => {
+      if (window.innerWidth < 768) setVisibleCount(2);
+      else if (window.innerWidth < 1024) setVisibleCount(3);
+      else setVisibleCount(4);
+    };
+
+    window.addEventListener("resize", updateVisibleCount);
+    updateVisibleCount();
+
+    return () => window.removeEventListener("resize", updateVisibleCount);
+  }, []);
+
+  // Get the movies currently in the carousel
+  const inCarousel = movies.slice(currentIndex, currentIndex + visibleCount);
 
   const handleClick = (direction) => {
-    if ((direction = "next")) {
-      setWindowSize((prev) => {
-        return { start: prev.start + 1, end: prev.end + 1 };
-      });
-    } else {
-      setWindowSize((prev) => {
-        return { start: prev.start - 1, end: prev.end - 1 };
-      });
-    }
+    setCurrentIndex(
+      (prev) =>
+        direction === "next"
+          ? Math.min(prev + 1, movies.length - visibleCount) // Prevent overflow
+          : Math.max(prev - 1, 0) // Prevent underflow
+    );
   };
 
   return (
     <div className={styles.mainCarousel}>
-      <div>
-        <button
-          disabled={windowSize.start == 0}
-          onClick={() => {
-            handleClick("prev");
-          }}
-        >
-          {" "}
-          Prev{" "}
-        </button>
-      </div>
+      <button
+        className={styles.button}
+        disabled={currentIndex === 0}
+        onClick={() => handleClick("prev")}
+      >
+        Prev
+      </button>
       <div className={styles.inCarousel}>
         {inCarousel.map((movie) => (
           <MovieCard key={movie.id} movie={movie} />
         ))}
       </div>
-      <div>
-        <button
-          disabled={windowSize.end === movies.length}
-          onClick={() => {
-            handleClick("next");
-          }}
-        >
-          {" "}
-          Next{" "}
-        </button>
-      </div>
+      <button
+        className={styles.button}
+        disabled={currentIndex + visibleCount >= movies.length}
+        onClick={() => handleClick("next")}
+      >
+        Next
+      </button>
     </div>
   );
 };

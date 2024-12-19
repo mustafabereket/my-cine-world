@@ -9,14 +9,14 @@ const SearchBar = () => {
   const [searchResults, setSearchResults] = useState([]);
 
   const handleSubmit = async () => {
-    let resp = await fetch("/api/search", {
+    const resp = await fetch("/api/search", {
       method: "POST",
       headers: {
         "Content-Type": "application/json", // Set the content type
       },
       body: JSON.stringify({ searchText }),
     });
-    let data = await resp.json();
+    const data = await resp.json();
     console.log(data);
 
     setSearchResults(data.results);

@@ -1,11 +1,37 @@
+/* Main Carousel Container */
 .mainCarousel {
-    display: grid;
-    grid-template-columns: 1fr 8fr 1fr;
-    gap: 4px;
+  display: grid;
+  grid-template-columns: auto 1fr auto; /* Buttons and movie cards */
+  gap: 16px;
+  align-items: center;
+  justify-items: center;
 }
 
+/* Carousel Items Container */
 .inCarousel {
-    display: flex;
-    gap: 8px;
-    justify-content: space-around;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  transition: transform 0.5s ease;
+}
+
+/* Button Styles */
+.button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.button:hover:not(:disabled) {
+  background-color: #0056b3;
 }

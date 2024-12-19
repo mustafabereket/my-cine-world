@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { SEARCH_MOVIES } from "../../config";
 const TOKEN = process.env.AUTH_TOKEN;
 
@@ -10,7 +10,7 @@ const headers = {
   },
 };
 
-export const POST = async (req) => {
+export const POST = async (req: NextRequest) => {
   console.log("SEARCH REQ GOT HERE");
   try {
     const { searchText } = await req.json();
@@ -27,7 +27,9 @@ export const POST = async (req) => {
     return new NextResponse(JSON.stringify(data), { status: 200 });
   } catch (error) {
     console.log(error);
-
-    return new NextResponse(error);
+    const err = {
+      message: error,
+    };
+    return new NextResponse(err as unknown as BodyInit);
   }
 };
