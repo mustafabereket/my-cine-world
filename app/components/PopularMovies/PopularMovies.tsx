@@ -1,22 +1,23 @@
 import React from "react";
 import styles from "./PopularMovies.module.css";
-import { getPopularGenres, getPopularMovies } from "@/app/api/movie-services";
+import { getPopularMovies } from "@/app/api/movie-services";
 import Carousel from "../Carousel/Carousel";
+import { Genre } from "@/app/types";
+import { getPopularGenres } from "../../api/movie-services";
 
 const PopularMovies = async () => {
-  // Fetch genres and movies during the build process
+  const { results: movies } = await getPopularMovies(); // Fetch movies dynamically
   const { genres } = await getPopularGenres();
-  const { results: movies } = await getPopularMovies();
 
-  if (!genres || !movies) {
-    return <div>Error loading data</div>; // Handle edge cases
+  if (!movies) {
+    return <div>Error loading movies</div>;
   }
 
   return (
     <div className={styles.popularContainer}>
       <h2>Popular Genres</h2>
       <div className={styles.genreContainer}>
-        {genres.map((genre) => (
+        {genres.map((genre: Genre) => (
           <div key={genre.id} className={styles.genreButton}>
             {genre.name}
           </div>

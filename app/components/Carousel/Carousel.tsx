@@ -3,8 +3,13 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Carousel.module.css";
 import MovieCard from "../MovieCard/MovieCard";
+import { Movie } from "@/app/types";
 
-const Carousel = ({ movies }) => {
+interface CarouselProps {
+  movies: Movie[]; // The movies prop is an array of Movie objects
+}
+
+const Carousel = ({ movies }: CarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(4);
 
@@ -25,7 +30,7 @@ const Carousel = ({ movies }) => {
   // Get the movies currently in the carousel
   const inCarousel = movies.slice(currentIndex, currentIndex + visibleCount);
 
-  const handleClick = (direction) => {
+  const handleClick = (direction: "next" | "prev") => {
     setCurrentIndex(
       (prev) =>
         direction === "next"

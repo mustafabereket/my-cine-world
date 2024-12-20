@@ -1,8 +1,14 @@
 import React from "react";
 import Image from "next/image";
 import styles from "./MovieCard.module.css";
+import { Movie } from "@/app/types";
 const preURL = "https://www.themoviedb.org/t/p/w500";
-const MovieCard = ({ movie }) => {
+
+interface MovieCardProps {
+  movie: Movie;
+}
+
+const MovieCard = ({ movie }: MovieCardProps) => {
   const { title, vote_average, poster_path, overview } = movie;
   console.log(title, vote_average, poster_path, overview);
   return (

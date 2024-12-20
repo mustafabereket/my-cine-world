@@ -3,6 +3,7 @@ import { useState } from "react";
 import Form from "next/form";
 import styles from "./SearchBar.module.css";
 import MovieCard from "../MovieCard/MovieCard";
+import { Movie } from "@/app/types";
 
 const SearchBar = () => {
   const [searchText, setSearchText] = useState("");
@@ -44,7 +45,7 @@ const SearchBar = () => {
       </Form>
       <div className={styles.searchResults}>
         {searchResults &&
-          searchResults.map((movie) => {
+          searchResults.map((movie: Movie) => {
             return <MovieCard key={movie.id} movie={movie} />;
           })}
       </div>
