@@ -1,0 +1,44 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  width: 256px;
+  height: 500px; /* Fix the default card height */
+  align-items: center;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  box-shadow: 0 4px 8px rgba(142, 116, 116, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  position: relative; /* Enable absolute positioning for inner content */
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card div:last-child {
+  position: absolute; /* Position the description */
+  bottom: 0; /* Stick it to the bottom */
+  left: 0;
+  right: 0;
+  background: var(--background-color);
+  padding: 16px;
+  height: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Limit description to 3 lines */
+  -webkit-box-orient: vertical;
+  transition: height 0.3s ease, -webkit-line-clamp 0.3s ease;
+}
+
+.card:hover div:last-child {
+  -webkit-line-clamp: unset; /* Remove truncation */
+  height: auto; /* Expand description smoothly */
+}

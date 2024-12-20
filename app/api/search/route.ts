@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { SEARCH_MOVIES } from "../../config";
+import { Movie } from "@/app/types";
 const TOKEN = process.env.AUTH_TOKEN;
 
 const headers = {
@@ -22,7 +23,11 @@ export const POST = async (req: NextRequest) => {
     console.log(`${SEARCH_MOVIES}?query=${searchText}`);
     const data = await rest.json();
 
-    console.log(data);
+    if (data.results) {
+      data.results = data.results.filter(
+        (movie: Movie) => movie.poster_path !== null
+      );
+    }
 
     return new NextResponse(JSON.stringify(data), { status: 200 });
   } catch (error) {

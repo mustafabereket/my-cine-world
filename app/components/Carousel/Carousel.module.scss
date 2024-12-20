@@ -1,10 +1,11 @@
-/* Main Carousel Container */
 .mainCarousel {
   display: grid;
-  grid-template-columns: auto 1fr auto; /* Buttons and movie cards */
+  grid-template-columns: auto 1fr auto;
   gap: 16px;
   align-items: center;
   justify-items: center;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
 /* Carousel Items Container */
@@ -17,9 +18,9 @@
 
 /* Button Styles */
 .button {
-  background-color: #007bff;
-  color: white;
-  border: none;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
   padding: 8px 16px;
   cursor: pointer;
   border-radius: 4px;
@@ -27,11 +28,11 @@
   transition: background-color 0.3s ease;
 }
 
-.button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
+.button:hover:not(:disabled) {
+  background-color: var(--secondary-color);
 }
 
-.button:hover:not(:disabled) {
-  background-color: #0056b3;
+.button:disabled {
+  background-color: var(--border-color);
+  cursor: not-allowed;
 }

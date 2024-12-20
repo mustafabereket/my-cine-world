@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import styles from "./MovieCard.module.css";
+import styles from "./MovieCard.module.scss";
 import { Movie } from "@/app/types";
 const preURL = "https://www.themoviedb.org/t/p/w500";
 
@@ -20,11 +20,9 @@ const MovieCard = ({ movie }: MovieCardProps) => {
         height={300}
         className={styles.imgContainer}
       />
-      <h3 className={styles.cardBody}>{title}</h3>
-      <div className={styles.cardBody}>Rating: {vote_average}</div>
-      <div className={styles.cardBody}>
-        {overview.length > 126 ? overview.substring(0, 126) + "..." : overview}
-      </div>
+      <h3>{title}</h3>
+      <div>Rating: {vote_average}</div>
+      <div>{overview}</div>
     </div>
   );
 };

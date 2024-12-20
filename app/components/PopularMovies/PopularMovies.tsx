@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./PopularMovies.module.css";
+import styles from "./PopularMovies.module.scss";
 import { getPopularMovies } from "@/app/api/movie-services";
 import Carousel from "../Carousel/Carousel";
 import { Genre } from "@/app/types";

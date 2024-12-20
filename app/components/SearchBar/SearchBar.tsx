@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Form from "next/form";
-import styles from "./SearchBar.module.css";
+import styles from "./SearchBar.module.scss";
 import MovieCard from "../MovieCard/MovieCard";
 import { Movie } from "@/app/types";
 
@@ -24,7 +24,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className={styles.mainContainer}>
+    <div className={styles.searchContainer}>
       SearchBar
       <Form className={styles.form} action={handleSubmit}>
         <label htmlFor="search-bar">

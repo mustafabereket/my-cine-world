@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import styles from "./Carousel.module.css";
+import styles from "./Carousel.module.scss";
 import MovieCard from "../MovieCard/MovieCard";
 import { Movie } from "@/app/types";
 
@@ -41,11 +41,7 @@ const Carousel = ({ movies }: CarouselProps) => {
 
   return (
     <div className={styles.mainCarousel}>
-      <button
-        className={styles.button}
-        disabled={currentIndex === 0}
-        onClick={() => handleClick("prev")}
-      >
+      <button disabled={currentIndex === 0} onClick={() => handleClick("prev")}>
         Prev
       </button>
       <div className={styles.inCarousel}>
@@ -54,7 +50,6 @@ const Carousel = ({ movies }: CarouselProps) => {
         ))}
       </div>
       <button
-        className={styles.button}
         disabled={currentIndex + visibleCount >= movies.length}
         onClick={() => handleClick("next")}
       >

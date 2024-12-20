@@ -1,4 +1,4 @@
-import styles from "./page.module.css";
+import styles from "./page.module.scss";
 import SearchBar from "./components/SearchBar/SearchBar";
 import PopularMovies from "./components/PopularMovies/PopularMovies";
 
