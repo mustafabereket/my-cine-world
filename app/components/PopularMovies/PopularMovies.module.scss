@@ -1,27 +1,17 @@
 .genreContainer {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    gap: 4px;
-}
-
-.genreButton {
-    background-color: blueviolet;
-    color: white;
-    font: 14px;
-    text-align: center;
-    border-radius: 12px;
-    padding: 6px;
-    margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 4px;
 }
 
 .popularContainer {
-    display: flex;
-    justify-content: space-around;
-    gap: 8px;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  justify-content: space-around;
+  gap: 8px;
+  flex-direction: column;
+  align-items: center;
 }
 
 .popularMovieContainer {
-    display: flex;
+  display: flex;
 }

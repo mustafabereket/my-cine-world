@@ -6,7 +6,9 @@ export default function Home() {
   return (
     <div className={styles.mainContainer}>
       <div className={styles.heading}>
-        <h1>Welcome to MyCineWorld</h1>
+        <div>
+          <h1>Welcome to MyCineWorld</h1>
+        </div>
       </div>
       <SearchBar />
       <PopularMovies />

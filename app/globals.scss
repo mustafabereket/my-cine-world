@@ -18,11 +18,11 @@ body {
 body {
   background-color: var(--background-color);
   color: var(--text-color);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-rubik-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-button:hover{
+button:hover {
   cursor: pointer;
 }
 * {
@@ -43,6 +43,7 @@ button {
   padding: 8px 16px;
   cursor: pointer;
   border-radius: 4px;
+  font-family: var(--font-rubik-sans);
   font-size: 16px;
   transition: background-color 0.3s ease;
 }
@@ -60,4 +61,14 @@ button:disabled {
   html {
     color-scheme: dark;
   }
+}
+
+.genreButton {
+  background-color: blueviolet;
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  border-radius: 12px;
+  padding: 6px;
+  margin: auto 2px;
 }

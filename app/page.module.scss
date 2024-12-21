@@ -1,6 +1,5 @@
-
 .mainContiner {
-  margin: 20px auto;
+  margin: 40px auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,11 +7,16 @@
   margin: auto;
   width: 100%;
   text-align: center;
-
 }
 
 .heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 25px;
   font-weight: 600;
+  height: 200px;
   text-align: center;
+  border-bottom: 2px var(--primary-color) solid;
+  margin: 40px auto;
 }

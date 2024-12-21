@@ -1,0 +1,39 @@
+.movieDetailsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  gap: 20px;
+  width: 80fr;
+  .heading {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 2px solid var(--primary-color);
+    border-radius: 12px;
+    .headerSideBar {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-size: 16px;
+      border-left: 2px solid var(--primary-color);
+      padding: 26px;
+    }
+    .poster {
+      padding: 12px;
+    }
+  }
+  .overview {
+    border: 2px solid var(--primary-color);
+    margin-top: 20px;
+    width: 902px;
+    padding: 8px;
+    margin-bottom: 20px;
+  }
+
+  .posters {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 12px;
+  }
+}

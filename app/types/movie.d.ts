@@ -26,3 +26,13 @@ export interface Genre {
   id: number;
   name: string;
 }
+
+export type Poster = {
+  aspect_ratio: number;
+  height: number;
+  iso_639_1: string | null; // Use `null` for nullable fields
+  file_path: string;
+  vote_average: number;
+  vote_count: number;
+  width: number;
+};

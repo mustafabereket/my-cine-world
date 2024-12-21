@@ -18,7 +18,7 @@ const PopularMovies = async () => {
       <h2>Popular Genres</h2>
       <div className={styles.genreContainer}>
         {genres.map((genre: Genre) => (
-          <div key={genre.id} className={styles.genreButton}>
+          <div key={genre.id} className={"genreButton"}>
             {genre.name}
           </div>
         ))}

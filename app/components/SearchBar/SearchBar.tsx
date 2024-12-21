@@ -1,26 +1,50 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Form from "next/form";
 import styles from "./SearchBar.module.scss";
 import MovieCard from "../MovieCard/MovieCard";
 import { Movie } from "@/app/types";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const SearchBar = () => {
   const [searchText, setSearchText] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const searchParams = useSearchParams();
+  const router = useRouter();
 
-  const handleSubmit = async () => {
-    const resp = await fetch("/api/search", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json", // Set the content type
-      },
-      body: JSON.stringify({ searchText }),
-    });
-    const data = await resp.json();
-    console.log(data);
+  const handleSubmit = () => {
+    if (searchText) {
+      fetchMovies(searchText);
+    }
+  };
 
-    setSearchResults(data.results);
+  const fetchMovies = async (text) => {
+    if (text) {
+      router.push(`?query=${encodeURIComponent(text)}`);
+      const resp = await fetch(`/api/search?query=${text}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json", // Set the content type
+        },
+      });
+      const data = await resp.json();
+      setSearchResults(data.results);
+    }
+  };
+
+  useEffect(() => {
+    const query = searchParams.get("query");
+    if (query) {
+      setSearchText(query);
+      fetchMovies(query);
+    }
+    console.log("sss");
+  }, []);
+
+  const clearSearch = () => {
+    setSearchText("");
+    setSearchResults([]);
+    router.push("?");
   };
 
   return (
@@ -42,11 +66,16 @@ const SearchBar = () => {
           value={searchText}
         ></input>
         <button type="submit">Search</button>
+        {searchResults.length ? (
+          <button onClick={clearSearch}>Clear Search</button>
+        ) : null}
       </Form>
       <div className={styles.searchResults}>
         {searchResults &&
           searchResults.map((movie: Movie) => {
-            return <MovieCard key={movie.id} movie={movie} />;
+            return (
+              <MovieCard key={movie.id} movie={movie} query={searchText} />
+            );
           })}
       </div>
     </div>

@@ -11,10 +11,11 @@ const headers = {
   },
 };
 
-export const POST = async (req: NextRequest) => {
+export const GET = async (req: NextRequest) => {
   console.log("SEARCH REQ GOT HERE");
   try {
-    const { searchText } = await req.json();
+    const { searchParams } = new URL(req.url);
+    const searchText = searchParams.get("query"); // Get
 
     const rest = await fetch(
       `${SEARCH_MOVIES}?adult=true&query=${searchText}`,
@@ -22,6 +23,8 @@ export const POST = async (req: NextRequest) => {
     );
     console.log(`${SEARCH_MOVIES}?query=${searchText}`);
     const data = await rest.json();
+
+    console.log(data);
 
     if (data.results) {
       data.results = data.results.filter(
