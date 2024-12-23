@@ -5,30 +5,44 @@ import styles from "./SearchBar.module.scss";
 import MovieCard from "../MovieCard/MovieCard";
 import { Movie } from "@/app/types";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
+
+const fetchMovies = async (text: string) => {
+  console.log("calisti query");
+  if (text) {
+    const resp = await fetch(`/api/search?query=${text}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json", // Set the content type
+      },
+    });
+    const data = await resp.json();
+    //setSearchResults(data.results);
+    return data;
+  } else {
+    return [];
+  }
+};
 
 const SearchBar = () => {
   const [searchText, setSearchText] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+  //const [searchResults, setSearchResults] = useState([]);
   const searchParams = useSearchParams();
   const router = useRouter();
 
+  const { data, isLoading, isError, error, refetch } = useQuery({
+    queryKey: ["movies", searchText],
+    queryFn: () => fetchMovies(searchText),
+    ...{
+      enabled: false, // Disable automatic fetching
+    },
+  });
+  console.log(data);
   const handleSubmit = () => {
     if (searchText) {
-      fetchMovies(searchText);
-    }
-  };
-
-  const fetchMovies = async (text) => {
-    if (text) {
-      router.push(`?query=${encodeURIComponent(text)}`);
-      const resp = await fetch(`/api/search?query=${text}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json", // Set the content type
-        },
-      });
-      const data = await resp.json();
-      setSearchResults(data.results);
+      router.push(`?query=${encodeURIComponent(searchText)}`);
+      //fetchMovies(searchText);
+      refetch();
     }
   };
 
@@ -36,14 +50,14 @@ const SearchBar = () => {
     const query = searchParams.get("query");
     if (query) {
       setSearchText(query);
-      fetchMovies(query);
+      refetch();
     }
     console.log("sss");
   }, []);
 
   const clearSearch = () => {
     setSearchText("");
-    setSearchResults([]);
+    //setSearchResults([]);
     router.push("?");
   };
 
@@ -66,17 +80,14 @@ const SearchBar = () => {
           value={searchText}
         ></input>
         <button type="submit">Search</button>
-        {searchResults.length ? (
+        {data?.results?.length ? (
           <button onClick={clearSearch}>Clear Search</button>
         ) : null}
       </Form>
       <div className={styles.searchResults}>
-        {searchResults &&
-          searchResults.map((movie: Movie) => {
-            return (
-              <MovieCard key={movie.id} movie={movie} query={searchText} />
-            );
-          })}
+        {data?.results?.map((movie: Movie) => {
+          return <MovieCard key={movie.id} movie={movie} query={searchText} />;
+        })}
       </div>
     </div>
   );

@@ -4,7 +4,6 @@ import style from "./page.module.scss";
 import { preImgURL } from "../../config";
 import Image from "next/image";
 import { Genre } from "../../types/movie";
-import Link from "next/link";
 import BackButton from "@/app/components/BackButton/BackButton";
 
 const MovieDetails = async ({ params }) => {
