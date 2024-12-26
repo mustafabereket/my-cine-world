@@ -67,15 +67,22 @@ export const getMovieImagesByID = async (id: string) => {
   try {
     const resp = await fetch(GET_MOVIE_IMAGES_BY_ID(id), headers);
     const data = await resp.json();
-    data.backdrops = data.backdrops
-      .sort((a, b) => parseInt(a.vote) - parseInt(b.vote))
-      .slice(0, 8);
-    data.logos = data.logos
-      .sort((a, b) => parseInt(a.vote) - parseInt(b.vote))
-      .slice(0, 2);
-    data.posters = data.posters
-      .sort((a, b) => parseInt(a.vote) - parseInt(b.vote))
-      .slice(0, 8);
+    if (data.backdrops) {
+      data.backdrops = data.backdrops
+        .sort((a, b) => parseInt(a.vote) - parseInt(b.vote))
+        .slice(0, 8);
+    }
+    if (data.logos) {
+      data.logos = data.logos
+        .sort((a, b) => parseInt(a.vote) - parseInt(b.vote))
+        .slice(0, 2);
+    }
+    if (data.posters) {
+      data.posters = data.posters
+        .sort((a, b) => parseInt(a.vote) - parseInt(b.vote))
+        .slice(0, 8);
+    }
+    console.log(data);
     return data;
   } catch (err) {
     console.log(err);

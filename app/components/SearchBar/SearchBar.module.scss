@@ -5,7 +5,7 @@
   gap: 20px;
   text-align: center;
   font-size: 20px;
-  margin: 40px auto;
+  margin: 20px auto;
   border-bottom: 2px var(--primary-color) solid;
 }
 
@@ -29,7 +29,7 @@
 .searchResults {
   display: grid;
   width: 50%;
-  margin: auto;
+  margin: 4px auto 20px auto;
   justify-content: center;
   align-items: center;
   grid-template-columns: 1fr 1fr 1fr 1fr;

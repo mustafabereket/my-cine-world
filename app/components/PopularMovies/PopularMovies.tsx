@@ -8,7 +8,6 @@ import AddToWatchList from "../ui/AddToWatchList/AddToWatchList";
 
 const PopularMovies = async () => {
   const { results: movies } = await getPopularMovies(); // Fetch movies dynamically
-  const { genres } = await getPopularGenres();
 
   if (!movies) {
     return <div>Error loading movies</div>;
@@ -16,16 +15,9 @@ const PopularMovies = async () => {
 
   return (
     <div className={styles.popularContainer}>
-      <h2>Popular Genres</h2>
-      <div className={styles.genreContainer}>
-        {genres.map((genre: Genre) => (
-          <div key={genre.id} className={"genreButton"}>
-            {genre.name}
-          </div>
-        ))}
-        <AddToWatchList id={"sda"} />
+      <div className="heading">
+        <h2>Popular Movies</h2>
       </div>
-      <h2>Popular Movies</h2>
       <div className={styles.popularMovieContainer}>
         <Carousel movies={movies} />
       </div>

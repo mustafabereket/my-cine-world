@@ -2,6 +2,7 @@ import styles from "./page.module.scss";
 import SearchBar from "./components/SearchBar/SearchBar";
 import PopularMovies from "./components/PopularMovies/PopularMovies";
 import Link from "next/link";
+import PopularGenres from "./components/PopularGenres/PopularGenres";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
         </div>
       </div>
       <SearchBar />
+      <PopularGenres />
       <PopularMovies />
     </div>
   );

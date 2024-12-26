@@ -1,0 +1,20 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+  border-bottom: 2px var(--primary-color) solid;
+  .heading {
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: center;
+  }
+
+  .genreContainer {
+    display: grid;
+    width: 60%;
+    margin: auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 60px;
+  }
+}

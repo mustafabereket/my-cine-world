@@ -2,6 +2,7 @@
 import React from "react";
 import styles from "./AddToWatchList.module.scss";
 import AddIcon from "@mui/icons-material/Add";
+import Tooltip from "@mui/material/Tooltip";
 
 const addToWatchlist = async (id: number) => {
   if (id) {
@@ -23,15 +24,28 @@ const addToWatchlist = async (id: number) => {
 
 const AddToWatchList = ({ id }) => {
   return (
-    <div
-      className={styles.favoritesIcon}
-      onClick={(e) => {
-        e.preventDefault();
-        addToWatchlist(id);
+    <Tooltip
+      componentsProps={{
+        tooltip: {
+          sx: {
+            fontSize: "1rem", // Adjust the value to your liking
+            padding: "8px 12px",
+          },
+        },
       }}
+      title="Add to WatchList"
+      arrow
     >
-      <AddIcon></AddIcon>
-    </div>
+      <div
+        className={styles.favoritesIcon}
+        onClick={(e) => {
+          e.preventDefault();
+          addToWatchlist(id);
+        }}
+      >
+        <AddIcon></AddIcon>
+      </div>
+    </Tooltip>
   );
 };
 

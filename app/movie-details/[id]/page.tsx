@@ -31,7 +31,7 @@ const MovieDetails = async ({ params }) => {
       <div className={style.heading}>
         <div className={style.poster}>
           <Image
-            alt={original_title}
+            alt={original_title || "no alt tag found"}
             src={preImgURL + poster_path}
             width={450}
             height={450}
@@ -45,7 +45,7 @@ const MovieDetails = async ({ params }) => {
           <div>
             original country:{" "}
             <span className="genreButton">
-              {production_countries[0]
+              {production_countries?.[0]
                 ? production_countries[0].name
                 : origin_country
                 ? origin_country
@@ -60,7 +60,7 @@ const MovieDetails = async ({ params }) => {
           </div>
           <div>
             genres:{" "}
-            {genres.map((genre: Genre) => (
+            {genres?.map((genre: Genre) => (
               <span className="genreButton" key={genre.id}>
                 {genre.name || "unknown genre"}
               </span>
@@ -79,30 +79,30 @@ const MovieDetails = async ({ params }) => {
       </div>
       <div className={style.overview}>{overview}</div>
       <div className={style.posters}>
-        {backdrops.map((obj) => (
+        {backdrops?.map((obj) => (
           <div key={obj.file_path}>
             <Image
-              alt={original_title}
+              alt={original_title || "no alt tag found"}
               src={preImgURL + obj.file_path}
               width={300}
               height={300}
             />
           </div>
         ))}
-        {posters.map((obj) => (
+        {posters?.map((obj) => (
           <div key={obj.file_path}>
             <Image
-              alt={original_title}
+              alt={original_title || "no alt tag found"}
               src={preImgURL + obj.file_path}
               width={300}
               height={300}
             />
           </div>
         ))}
-        {logos.map((obj) => (
+        {logos?.map((obj) => (
           <div key={obj.file_path}>
             <Image
-              alt={original_title}
+              alt={original_title || "no alt tag found"}
               src={preImgURL + obj.file_path}
               width={300}
               height={300}

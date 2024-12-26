@@ -79,10 +79,12 @@ const SearchBar = () => {
           }}
           value={searchText}
         ></input>
-        <button type="submit">Search</button>
-        {data?.results?.length ? (
-          <button onClick={clearSearch}>Clear Search</button>
-        ) : null}
+        <div>
+          <button type="submit">Search</button>
+          {data?.results?.length ? (
+            <button onClick={clearSearch}>Clear Search</button>
+          ) : null}
+        </div>
       </Form>
       <div className={styles.searchResults}>
         {data?.results?.map((movie: Movie) => {
