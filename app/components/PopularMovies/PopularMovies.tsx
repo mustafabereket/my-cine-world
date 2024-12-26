@@ -1,9 +1,10 @@
 import React from "react";
 import styles from "./PopularMovies.module.scss";
 import { getPopularMovies } from "@/app/api/movie-services";
-import Carousel from "../Carousel/Carousel";
+import Carousel from "../ui/Carousel/Carousel";
 import { Genre } from "@/app/types";
 import { getPopularGenres } from "../../api/movie-services";
+import AddToWatchList from "../ui/AddToWatchList/AddToWatchList";
 
 const PopularMovies = async () => {
   const { results: movies } = await getPopularMovies(); // Fetch movies dynamically
@@ -22,6 +23,7 @@ const PopularMovies = async () => {
             {genre.name}
           </div>
         ))}
+        <AddToWatchList id={"sda"} />
       </div>
       <h2>Popular Movies</h2>
       <div className={styles.popularMovieContainer}>

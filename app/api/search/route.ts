@@ -1,15 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { SEARCH_MOVIES } from "../../config";
+import { SEARCH_MOVIES, headers } from "../../config";
 import { Movie } from "@/app/types";
-const TOKEN = process.env.AUTH_TOKEN;
-
-const headers = {
-  headers: {
-    // Correct format: headers as an object
-    Authorization: `Bearer ${TOKEN}`,
-    "Content-Type": "application/json",
-  },
-};
 
 export const GET = async (req: NextRequest) => {
   console.log("SEARCH REQ GOT HERE");

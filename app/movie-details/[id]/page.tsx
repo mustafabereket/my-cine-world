@@ -4,7 +4,7 @@ import style from "./page.module.scss";
 import { preImgURL } from "../../config";
 import Image from "next/image";
 import { Genre } from "../../types/movie";
-import BackButton from "@/app/components/BackButton/BackButton";
+import BackButton from "@/app/components/ui/BackButton/BackButton";
 
 const MovieDetails = async ({ params }) => {
   const { id } = await params;

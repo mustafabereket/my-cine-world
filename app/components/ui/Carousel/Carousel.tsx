@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import styles from "./Carousel.module.scss";
-import MovieCard from "../MovieCard/MovieCard";
+import MovieCard from "../../MovieCard/MovieCard";
 import { Movie } from "@/app/types";
 
 interface CarouselProps {

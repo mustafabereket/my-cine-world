@@ -4,6 +4,7 @@ import {
   GET_MOVIE_BY_ID,
   GET_MOVIE_IMAGES_BY_ID,
 } from "../config";
+import { ADD_TO_WATCHLIST } from "../config";
 const TOKEN = process.env.AUTH_TOKEN;
 
 const headers = {
@@ -45,6 +46,21 @@ export const getMovieByID = async (id: string) => {
     console.log(err);
     return err;
   }
+};
+
+export const addToWatchList = async (movieId: number) => {
+  try {
+    const payload = { media_type: "movie", media_id: movieId, watchlist: true };
+    const resp = await fetch(ADD_TO_WATCHLIST, {
+      ...headers,
+      method: "POST",
+      body: JSON.stringify(payload),
+    });
+
+    const data = await resp.json();
+    console.log(data);
+    return data;
+  } catch (error) {}
 };
 
 export const getMovieImagesByID = async (id: string) => {

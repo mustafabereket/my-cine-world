@@ -1,0 +1,17 @@
+.favoritesIcon {
+  position: absolute;
+  top: 4px; // Adjust as needed
+  right: 30px; // Adjust as needed
+  z-index: 1; // Ensure it's on top of the image
+  height: 30px;
+  width: 30px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+.favoritesIcon:hover {
+  transform: translateY(-5px);
+}

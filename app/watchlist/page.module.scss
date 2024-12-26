@@ -1,0 +1,19 @@
+.mainContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 20px;
+  margin: auto;
+  width: 100%;
+  .heading {
+    text-align: center;
+    margin: 24px auto;
+  }
+  .resultsContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: 60%;
+    margin: auto;
+    gap: 20px;
+  }
+}
