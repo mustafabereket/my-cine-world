@@ -4,21 +4,22 @@ import styles from "./MovieCard.module.scss";
 import { Movie } from "@/app/types";
 import { preImgURL } from "@/app/config";
 import Link from "next/link";
-import AddToWatchList from "../ui/AddToWatchList/AddToWatchList";
+import AddOrRemoveWatchList from "../ui/AddOrRemoveWatchList/AddOrRemoveWatchList";
 import { Rating, Tooltip } from "@mui/material";
 
 interface MovieCardProps {
   movie: Movie;
   query?: string;
+  action?: "add" | "remove";
 }
 
-const MovieCard = ({ movie, query }: MovieCardProps) => {
+const MovieCard = ({ movie, query, action = "add" }: MovieCardProps) => {
   const { title, vote_average, poster_path, overview, id } = movie;
 
   return (
     <Link className={styles.card} href={`/movie-details/${id}/?query=${query}`}>
       <div className={styles.imageContainer}>
-        <AddToWatchList id={id} />
+        <AddOrRemoveWatchList id={id} action={action} />
         <Image
           alt={title}
           src={preImgURL + poster_path}

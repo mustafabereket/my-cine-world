@@ -9,13 +9,13 @@ const TOKEN = process.env.AUTH_TOKEN;
 
 export const POST = async (req) => {
   try {
-    const { id } = await req.json();
-    console.log("POSTfirviiii", id);
+    const { id, action } = await req.json();
+    console.log("POSTfirviiii", id, action);
 
     const payload = {
       media_type: "movie",
       media_id: id,
-      watchlist: true,
+      watchlist: action === "add",
     };
     const resp = await fetch(ADD_TO_WATCHLIST, {
       ...headers,

@@ -29,7 +29,7 @@ const WatchList = async () => {
       {results.length ? (
         <div className={style.resultsContainer}>
           {results.map((movie: Movie) => {
-            return <MovieCard key={movie.id} movie={movie} />;
+            return <MovieCard key={movie.id} movie={movie} action={"remove"} />;
           })}
         </div>
       ) : (
