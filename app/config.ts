@@ -2,6 +2,8 @@ const ACCOUNT_ID = process.env.ACCOUNT_ID;
 
 const TOKEN = process.env.AUTH_TOKEN;
 
+export const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+
 export const headers = {
   headers: {
     // Correct format: headers as an object

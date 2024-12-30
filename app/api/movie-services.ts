@@ -3,6 +3,7 @@ import {
   GET_POPULAR_MOVIES,
   GET_MOVIE_BY_ID,
   GET_MOVIE_IMAGES_BY_ID,
+  baseUrl,
 } from "../config";
 import { ADD_TO_WATCHLIST } from "../config";
 const TOKEN = process.env.AUTH_TOKEN;
@@ -53,7 +54,7 @@ export const getMovieByID = async (id: string) => {
 
 export const fetchWatchlistMovies = async () => {
   try {
-    const resp = await fetch(`http://localhost:3000/api/watchlist`, {
+    const resp = await fetch(`${baseUrl}/api/watchlist`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json", // Set the content type
