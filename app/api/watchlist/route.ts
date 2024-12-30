@@ -1,13 +1,7 @@
-import { NextRequest, NextResponse } from "next/server";
-import {
-  SEARCH_MOVIES,
-  GET_WATCHLIST_MOVIES,
-  headers,
-  ADD_TO_WATCHLIST,
-} from "../../config";
-const TOKEN = process.env.AUTH_TOKEN;
+import { NextResponse, NextRequest } from "next/server";
+import { GET_WATCHLIST_MOVIES, headers, ADD_TO_WATCHLIST } from "../../config";
 
-export const POST = async (req) => {
+export const POST = async (req: NextRequest) => {
   try {
     const { id, action } = await req.json();
     console.log("POSTfirviiii", id, action);
@@ -32,8 +26,7 @@ export const POST = async (req) => {
   }
 };
 
-export const GET = async (req) => {
-  console.log("firviiii");
+export const GET = async () => {
   try {
     const res = await fetch(GET_WATCHLIST_MOVIES, headers);
     const data = await res.json();

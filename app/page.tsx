@@ -3,6 +3,7 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import PopularMovies from "./components/PopularMovies/PopularMovies";
 import Link from "next/link";
 import PopularGenres from "./components/PopularGenres/PopularGenres";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
@@ -15,7 +16,10 @@ export default function Home() {
           </Link>
         </div>
       </div>
-      <SearchBar />
+      <Suspense>
+        <SearchBar />
+      </Suspense>
+
       <PopularGenres />
       <PopularMovies />
     </div>

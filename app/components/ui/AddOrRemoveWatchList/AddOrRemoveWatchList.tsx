@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import styles from "./AddOrRemoveWatchList.module.scss";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
@@ -25,13 +25,12 @@ const addToWatchlist = async (id: number, action: "add" | "remove") => {
 };
 
 type AddOrRemoveWatchListProps = {
-  id: string;
+  id: number;
   action: "add" | "remove";
 };
 
 const AddOrRemoveWatchList = ({ id, action }: AddOrRemoveWatchListProps) => {
   const router = useRouter();
-  const [toastr, setToastr] = useState(false);
 
   const refreshData = () => {
     router.refresh();
@@ -58,7 +57,6 @@ const AddOrRemoveWatchList = ({ id, action }: AddOrRemoveWatchListProps) => {
           addToWatchlist(id, action);
           if (action == "remove") {
             refreshData();
-            setToastr(true);
           }
         }}
       >

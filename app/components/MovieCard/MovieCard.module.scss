@@ -10,7 +10,7 @@
   width: 384px;
   height: 750px; /* Fix the default card height */
   align-items: center;
-  background-color: var(--background-color);
+  background-color: #443c3cc6;
   color: var(--text-color);
   box-shadow: 0 4px 8px rgba(142, 116, 116, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -31,7 +31,6 @@
 }
 
 .card div:last-child {
-  background: var(--background-color);
   overflow: hidden;
   text-overflow: ellipsis;
   transition: height 0.3s ease, -webkit-line-clamp 0.3s ease;

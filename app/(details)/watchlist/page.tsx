@@ -1,24 +1,13 @@
 import React from "react";
 import style from "./page.module.scss";
-import { Movie } from "../types/movie";
-import MovieCard from "../components/MovieCard/MovieCard";
-import BackButton from "../components/ui/BackButton/BackButton";
-
-const fetchWatchlistMovies = async () => {
-  const resp = await fetch(`http://localhost:3000/api/watchlist`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json", // Set the content type
-    },
-  });
-
-  const data = await resp.json();
-
-  return data;
-};
+import { Movie } from "../../types/movie";
+import MovieCard from "../../components/MovieCard/MovieCard";
+import BackButton from "../../components/ui/BackButton/BackButton";
+import { fetchWatchlistMovies } from "@/app/api/movie-services";
 
 const WatchList = async () => {
-  const { results, page, total_results } = await fetchWatchlistMovies();
+  const { results } = await fetchWatchlistMovies();
+  console.log("results", results);
 
   return (
     <div className={style.mainContainer}>

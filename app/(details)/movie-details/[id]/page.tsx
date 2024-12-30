@@ -1,14 +1,15 @@
 import React from "react";
-import { getMovieByID, getMovieImagesByID } from "../../api/movie-services";
+import { getMovieByID, getMovieImagesByID } from "../../../api/movie-services";
 import style from "./page.module.scss";
-import { preImgURL } from "../../config";
+import { preImgURL } from "../../../config";
 import Image from "next/image";
-import { Genre } from "../../types/movie";
+import { Genre } from "../../../types/movie";
 import BackButton from "@/app/components/ui/BackButton/BackButton";
 
-const MovieDetails = async ({ params }) => {
-  const { id } = await params;
-  const goBack = () => {};
+type tParams = Promise<{ id: string }>;
+
+const MovieDetails = async (props: { params: tParams }) => {
+  const { id } = await props.params;
   const {
     poster_path,
     genres,
@@ -79,7 +80,7 @@ const MovieDetails = async ({ params }) => {
       </div>
       <div className={style.overview}>{overview}</div>
       <div className={style.posters}>
-        {backdrops?.map((obj) => (
+        {backdrops?.map((obj: { file_path: React.Key | null | undefined }) => (
           <div key={obj.file_path}>
             <Image
               alt={original_title || "no alt tag found"}
@@ -89,7 +90,7 @@ const MovieDetails = async ({ params }) => {
             />
           </div>
         ))}
-        {posters?.map((obj) => (
+        {posters?.map((obj: { file_path: React.Key | null | undefined }) => (
           <div key={obj.file_path}>
             <Image
               alt={original_title || "no alt tag found"}
@@ -99,7 +100,7 @@ const MovieDetails = async ({ params }) => {
             />
           </div>
         ))}
-        {logos?.map((obj) => (
+        {logos?.map((obj: { file_path: React.Key | null | undefined }) => (
           <div key={obj.file_path}>
             <Image
               alt={original_title || "no alt tag found"}

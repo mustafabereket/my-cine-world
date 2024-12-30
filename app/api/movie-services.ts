@@ -28,9 +28,12 @@ export const getPopularMovies = async () => {
 
 export const getPopularGenres = async () => {
   try {
-    const resp = await fetch(GET_GENRES_URL, headers);
+    const resp = await fetch(GET_GENRES_URL, {
+      ...headers,
+      cache: "force-cache",
+    });
     const data = await resp.json();
-
+    console.log(data);
     return data;
   } catch (err) {
     console.log(err);
@@ -48,6 +51,24 @@ export const getMovieByID = async (id: string) => {
   }
 };
 
+export const fetchWatchlistMovies = async () => {
+  try {
+    const resp = await fetch(`http://localhost:3000/api/watchlist`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json", // Set the content type
+      },
+      cache: "no-store", // Disable caching for dynamic data
+    });
+
+    const data = await resp.json();
+
+    return data;
+  } catch (err) {
+    return { results: [], error: err };
+  }
+};
+
 export const addToWatchList = async (movieId: number) => {
   try {
     const payload = { media_type: "movie", media_id: movieId, watchlist: true };
@@ -60,7 +81,9 @@ export const addToWatchList = async (movieId: number) => {
     const data = await resp.json();
     console.log(data);
     return data;
-  } catch (error) {}
+  } catch (error) {
+    return error;
+  }
 };
 
 export const getMovieImagesByID = async (id: string) => {
@@ -69,17 +92,26 @@ export const getMovieImagesByID = async (id: string) => {
     const data = await resp.json();
     if (data.backdrops) {
       data.backdrops = data.backdrops
-        .sort((a, b) => parseInt(a.vote) - parseInt(b.vote))
+        .sort(
+          (a: { vote: string }, b: { vote: string }) =>
+            parseInt(a.vote) - parseInt(b.vote)
+        )
         .slice(0, 8);
     }
     if (data.logos) {
       data.logos = data.logos
-        .sort((a, b) => parseInt(a.vote) - parseInt(b.vote))
+        .sort(
+          (a: { vote: string }, b: { vote: string }) =>
+            parseInt(a.vote) - parseInt(b.vote)
+        )
         .slice(0, 2);
     }
     if (data.posters) {
       data.posters = data.posters
-        .sort((a, b) => parseInt(a.vote) - parseInt(b.vote))
+        .sort(
+          (a: { vote: string }, b: { vote: string }) =>
+            parseInt(a.vote) - parseInt(b.vote)
+        )
         .slice(0, 8);
     }
     console.log(data);

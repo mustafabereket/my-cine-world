@@ -2,9 +2,8 @@ import React from "react";
 import styles from "./PopularMovies.module.scss";
 import { getPopularMovies } from "@/app/api/movie-services";
 import Carousel from "../ui/Carousel/Carousel";
-import { Genre } from "@/app/types";
-import { getPopularGenres } from "../../api/movie-services";
-import AddToWatchList from "../ui/AddOrRemoveWatchList/AddOrRemoveWatchList";
+
+export const revalidate = 3600;
 
 const PopularMovies = async () => {
   const { results: movies } = await getPopularMovies(); // Fetch movies dynamically

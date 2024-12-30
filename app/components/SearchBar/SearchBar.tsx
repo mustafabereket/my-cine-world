@@ -8,12 +8,11 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 
 const fetchMovies = async (text: string) => {
-  console.log("calisti query");
   if (text) {
     const resp = await fetch(`/api/search?query=${text}`, {
       method: "GET",
       headers: {
-        "Content-Type": "application/json", // Set the content type
+        "Content-Type": "application/json",
       },
     });
     const data = await resp.json();
@@ -26,11 +25,10 @@ const fetchMovies = async (text: string) => {
 
 const SearchBar = () => {
   const [searchText, setSearchText] = useState("");
-  //const [searchResults, setSearchResults] = useState([]);
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const { data, isLoading, isError, error, refetch } = useQuery({
+  const { data, isLoading, refetch } = useQuery({
     queryKey: ["movies", searchText],
     queryFn: () => fetchMovies(searchText),
     ...{
@@ -41,7 +39,6 @@ const SearchBar = () => {
   const handleSubmit = () => {
     if (searchText) {
       router.push(`?query=${encodeURIComponent(searchText)}`);
-      //fetchMovies(searchText);
       refetch();
     }
   };
@@ -52,7 +49,6 @@ const SearchBar = () => {
       setSearchText(query);
       refetch();
     }
-    console.log("sss");
   }, []);
 
   const clearSearch = () => {
@@ -90,6 +86,8 @@ const SearchBar = () => {
         {data?.results?.map((movie: Movie) => {
           return <MovieCard key={movie.id} movie={movie} query={searchText} />;
         })}
+
+        {isLoading && <div>Loading . . .</div>}
       </div>
     </div>
   );
