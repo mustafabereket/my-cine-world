@@ -28,7 +28,10 @@ export const POST = async (req: NextRequest) => {
 
 export const GET = async () => {
   try {
-    const res = await fetch(GET_WATCHLIST_MOVIES, headers);
+    const res = await fetch(GET_WATCHLIST_MOVIES, {
+      ...headers,
+      cache: "no-store",
+    });
     const data = await res.json();
 
     return new NextResponse(JSON.stringify(data), { status: 200 });
