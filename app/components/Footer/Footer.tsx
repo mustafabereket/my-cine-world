@@ -14,7 +14,7 @@ const Footer = () => {
         ></Image>
       </div>
       <h5>
-        This personal fun project uses free and public API's of{" "}
+        This personal fun project uses free and public API provided by{" "}
         <a href="https://www.themoviedb.org/">https://www.themoviedb.org</a>
       </h5>
     </div>
