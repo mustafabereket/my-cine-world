@@ -58,6 +58,7 @@ export const fetchWatchlistMovies = async () => {
       headers: {
         "Content-Type": "application/json", // Set the content type
       },
+      cache: "no-cache",
     });
 
     const data = await resp.json();
