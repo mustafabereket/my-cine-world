@@ -30,6 +30,7 @@ export const GET = async () => {
   try {
     const res = await fetch(GET_WATCHLIST_MOVIES, {
       ...headers,
+      cache: "no-cache",
     });
     const data = await res.json();
 
