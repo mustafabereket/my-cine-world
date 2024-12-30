@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Rubik, Rubik_Mono_One } from "next/font/google";
 import "./globals.scss";
 import ReactQueryProvider from "./utils/providers/ReactQueryProvider";
+import Footer from "./components/Footer/Footer";
 
 const rubik = Rubik({
   variable: "--font-rubik-sans",
@@ -28,6 +29,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${rubik.variable} ${rubikMono.variable}`}>
         <ReactQueryProvider>{children}</ReactQueryProvider>
+        <Footer></Footer>
       </body>
     </html>
   );
