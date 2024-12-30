@@ -62,9 +62,10 @@ export const fetchWatchlistMovies = async () => {
     });
 
     const data = await resp.json();
-
+    console.log("fetchWatchlistMovies", data);
     return data;
   } catch (err) {
+    console.log("fetchWatchlistMovies", err);
     return { results: [], error: err };
   }
 };

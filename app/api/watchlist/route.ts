@@ -34,8 +34,11 @@ export const GET = async () => {
     });
     const data = await res.json();
 
+    console.log("GET:::", data);
+
     return new NextResponse(JSON.stringify(data), { status: 200 });
   } catch (error) {
+    console.log("GET:::ERROR::: ", error);
     return new NextResponse(JSON.stringify(error), { status: 500 });
   }
 };
