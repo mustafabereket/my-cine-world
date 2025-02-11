@@ -28,11 +28,21 @@
 
 .searchResults {
   display: grid;
-  width: 50%;
+  width: 100%;
   margin: 4px auto 20px auto;
   justify-content: center;
   align-items: center;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 0 96px;
+  grid-template-columns: repeat(auto-fit, minmax(384px, 1fr));
   gap: 12px;
   font-size: 16px;
+}
+
+@media (max-width: 976px) {
+  .searchBox {
+    width: 300px;
+  }
+  .searchResults {
+    padding: 0 48px;
+  }
 }

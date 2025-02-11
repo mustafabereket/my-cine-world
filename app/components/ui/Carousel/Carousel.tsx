@@ -12,13 +12,23 @@ interface CarouselProps {
 const Carousel = ({ movies }: CarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(4);
+  const [isMobile, setIsMobile] = useState(false);
 
   // Adjust the number of visible movies based on screen width
   useEffect(() => {
     const updateVisibleCount = () => {
-      if (window.innerWidth < 768) setVisibleCount(2);
-      else if (window.innerWidth < 1024) setVisibleCount(3);
-      else setVisibleCount(4);
+      if (window.innerWidth < 976) {
+        setIsMobile(true);
+      } else if (window.innerWidth < 1368) {
+        setVisibleCount(2);
+        setIsMobile(false);
+      } else if (window.innerWidth < 1758) {
+        setVisibleCount(3);
+        setIsMobile(false);
+      } else {
+        setVisibleCount(4);
+        setIsMobile(false);
+      }
     };
 
     window.addEventListener("resize", updateVisibleCount);
@@ -41,20 +51,34 @@ const Carousel = ({ movies }: CarouselProps) => {
 
   return (
     <div className={styles.mainCarousel}>
-      <button disabled={currentIndex === 0} onClick={() => handleClick("prev")}>
-        Prev
-      </button>
-      <div className={styles.inCarousel}>
-        {inCarousel.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
-        ))}
-      </div>
-      <button
-        disabled={currentIndex + visibleCount >= movies.length}
-        onClick={() => handleClick("next")}
-      >
-        Next
-      </button>
+      {!isMobile ? (
+        <>
+          {" "}
+          <button
+            disabled={currentIndex === 0}
+            onClick={() => handleClick("prev")}
+          >
+            Prev
+          </button>
+          <div className={styles.inCarousel}>
+            {inCarousel.map((movie) => (
+              <MovieCard key={movie.id} movie={movie} />
+            ))}
+          </div>
+          <button
+            disabled={currentIndex + visibleCount >= movies.length}
+            onClick={() => handleClick("next")}
+          >
+            Next
+          </button>
+        </>
+      ) : (
+        <div className={styles.mobileView}>
+          {movies.map((movie) => (
+            <MovieCard key={movie.id} movie={movie} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

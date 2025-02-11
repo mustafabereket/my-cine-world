@@ -1,19 +1,19 @@
 .mainCarousel {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: 1fr 10fr 1fr;
   gap: 16px;
   align-items: center;
   justify-items: center;
   color: var(--text-color);
   margin-bottom: 24px;
-}
 
-/* Carousel Items Container */
-.inCarousel {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  transition: transform 0.5s ease;
+  /* Carousel Items Container */
+  .inCarousel {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    transition: transform 0.5s ease;
+  }
 }
 
 /* Button Styles */
@@ -35,4 +35,32 @@
 .button:disabled {
   background-color: var(--border-color);
   cursor: not-allowed;
+}
+
+.mobileView {
+  display: flex;
+  justify-content: flex-start;
+  gap: 12px;
+  overflow-x: auto; // Allow horizontal scrolling
+  -webkit-overflow-scrolling: touch; // For smooth scrolling on iOS
+  flex-wrap: nowrap; // Prevent wrapping of items
+}
+
+@media (max-width: 976px) {
+  .mainCarousel {
+    display: flex;
+    width: 100%;
+  }
+
+  .mobileView {
+    display: flex;
+    justify-content: flex-start;
+    gap: 12px;
+    overflow-x: auto; // Allow horizontal scrolling
+    -webkit-overflow-scrolling: touch; // For smooth scrolling on iOSt wrapping of items
+  }
+
+  .mobileView > * {
+    flex: 0 0 auto;
+  }
 }

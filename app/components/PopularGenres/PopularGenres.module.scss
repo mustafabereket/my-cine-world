@@ -16,5 +16,13 @@
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     gap: 12px;
     margin-bottom: 60px;
+    text-wrap: nowrap;
+  }
+}
+@media (max-width: 976px) {
+  .mainContainer {
+    .genreContainer {
+      grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+    }
   }
 }
