@@ -34,7 +34,7 @@ This app utilizes [TMDB's API](https://www.themoviedb.org/) to fetch movie data.
 ### 1️⃣ Clone the Repository  
 
 ```sh
-git clone https://github.com/your-username/My-Cine-World.git
+git clone https://github.com/mustafabereket/My-Cine-World.git
 cd My-Cine-World
 ```
 
