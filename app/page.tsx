@@ -19,9 +19,8 @@ export default function Home() {
       <Suspense>
         <SearchBar />
       </Suspense>
-
-      <PopularGenres />
       <PopularMovies />
+      <PopularGenres />
     </div>
   );
 }
