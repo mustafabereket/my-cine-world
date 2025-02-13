@@ -89,7 +89,7 @@ npm run start
 - Analytics & insights 📈  
 - Discover movies by genre 🎭  
 - Remove movies from watchlist ❌  
-- Local storage for personalized watchlists 💾  
+✅ Local storage for personalized watchlists 💾  
 - A navigation bar for better UX 🧭  
 
 ---
@@ -98,11 +98,10 @@ npm run start
 
 This was a **fun learning project** to dive deeper into **Next.js 15** and explore its latest features. Through this project, I got hands-on experience with:  
 ✅ Server Components & Client Components  
-✅ API calls & authentication handling  
+✅ API calls
 ✅ Optimizing performance in Next.js  
-✅ Working with TMDB's API  
+✅ Working with TMDB's API 
 
-More updates are coming soon! Stay tuned! 🚀  
 
 ---
 

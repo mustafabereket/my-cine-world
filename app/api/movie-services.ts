@@ -10,7 +10,6 @@ const TOKEN = process.env.AUTH_TOKEN;
 
 const headers = {
   headers: {
-    // Correct format: headers as an object
     Authorization: `Bearer ${TOKEN}`,
     "Content-Type": "application/json",
   },
