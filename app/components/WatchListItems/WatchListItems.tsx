@@ -24,11 +24,13 @@ const WatchListItems = () => {
   };
 
   const handleStorageChange = () => {
+    if (typeof window === "undefined") return;
     const items = JSON.parse(localStorage.getItem("watchlist") || "[]");
     retrieveMovies(items);
   };
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
     handleStorageChange();
 
     window.addEventListener("storage", handleStorageChange);
