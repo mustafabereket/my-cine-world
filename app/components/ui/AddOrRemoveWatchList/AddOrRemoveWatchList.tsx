@@ -30,11 +30,6 @@ const AddOrRemoveWatchList = ({ id, action }: AddOrRemoveWatchListProps) => {
 
   const router = useRouter();
   if (localWatchList.indexOf(id) !== -1) action = "remove";
-  const handleClick = (e) => {
-    e.preventDefault();
-    addToLocalWatchlist(id, action);
-    router.refresh();
-  };
   return (
     <Tooltip
       componentsProps={{
@@ -50,7 +45,14 @@ const AddOrRemoveWatchList = ({ id, action }: AddOrRemoveWatchListProps) => {
       }`}
       arrow
     >
-      <div className={styles.favoritesIcon} onClick={handleClick}>
+      <div
+        className={styles.favoritesIcon}
+        onClick={(e) => {
+          e.preventDefault();
+          addToLocalWatchlist(id, action);
+          router.refresh();
+        }}
+      >
         {action == "add" ? <AddIcon></AddIcon> : <RemoveIcon></RemoveIcon>}
       </div>
     </Tooltip>

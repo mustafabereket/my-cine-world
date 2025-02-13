@@ -3,11 +3,12 @@
 import React, { useState, useEffect } from "react";
 import MovieCard from "../MovieCard/MovieCard";
 import styles from "./WatchListItems.module.scss";
+import { Movie } from "@/app/types";
 
 const WatchListItems = () => {
   const [movies, setMovies] = useState([]);
 
-  const retrieveMovies = async (ids) => {
+  const retrieveMovies = async (ids: string[]) => {
     console.log("IDS", ids);
     const movieList = await fetch("/api/watchlist", {
       method: "POST",
