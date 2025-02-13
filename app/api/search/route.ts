@@ -9,7 +9,7 @@ export const GET = async (req: NextRequest) => {
     const searchText = searchParams.get("query"); // Get
 
     const rest = await fetch(
-      `${SEARCH_MOVIES}?adult=true&query=${searchText}`,
+      `${SEARCH_MOVIES}?adult=false&query=${searchText}`,
       headers
     );
     console.log(`${SEARCH_MOVIES}?query=${searchText}`);

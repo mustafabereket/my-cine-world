@@ -34,7 +34,6 @@ export const getPopularGenres = async () => {
       cache: "force-cache",
     });
     const data = await resp.json();
-    console.log(data);
     return data;
   } catch (err) {
     console.log(err);
@@ -63,12 +62,23 @@ export const fetchWatchlistMovies = async () => {
     });
 
     const data = await resp.json();
-    console.log("fetchWatchlistMovies", data);
+    //console.log("fetchWatchlistMovies", data);
     return data;
   } catch (err) {
-    console.log("fetchWatchlistMovies", err);
+    //console.log("fetchWatchlistMovies", err);
     return { results: [], error: err };
   }
+};
+
+export const fetchLocalWatchlist = async (ids: string[]) => {
+  console.log("BURAYA GIRDI", ids);
+  const movies = await Promise.all(
+    ids.map((id) => {
+      return getMovieByID(id);
+    })
+  );
+
+  return movies;
 };
 
 export const addToWatchList = async (movieId: number) => {
@@ -81,7 +91,6 @@ export const addToWatchList = async (movieId: number) => {
     });
 
     const data = await resp.json();
-    console.log(data);
     return data;
   } catch (error) {
     return error;
@@ -116,7 +125,6 @@ export const getMovieImagesByID = async (id: string) => {
         )
         .slice(0, 8);
     }
-    console.log(data);
     return data;
   } catch (err) {
     console.log(err);

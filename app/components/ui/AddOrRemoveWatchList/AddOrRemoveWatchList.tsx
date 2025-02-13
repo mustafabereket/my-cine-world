@@ -6,22 +6,18 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import Tooltip from "@mui/material/Tooltip";
 import { useRouter } from "next/navigation";
 
-const addToWatchlist = async (id: number, action: "add" | "remove") => {
-  if (id) {
-    const resp = await fetch(`/api/watchlist`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json", // Set the content type
-      },
-      body: JSON.stringify({ id, action }),
-    });
-    const data = await resp.json();
-    //setSearchResults(data.results);
-    console.log(data);
-    return data;
+const addToLocalWatchlist = async (id: number, action: "add" | "remove") => {
+  const localWatchList = JSON.parse(localStorage.getItem("watchlist") || "[]");
+
+  if (action === "add") {
+    const index = localWatchList.indexOf(id);
+    if (index === -1) localWatchList.push(id);
   } else {
-    return [];
+    const index = localWatchList.indexOf(id);
+    if (index > -1) localWatchList.splice(index, 1);
   }
+
+  localStorage.setItem("watchlist", JSON.stringify(localWatchList));
 };
 
 type AddOrRemoveWatchListProps = {
@@ -30,9 +26,13 @@ type AddOrRemoveWatchListProps = {
 };
 
 const AddOrRemoveWatchList = ({ id, action }: AddOrRemoveWatchListProps) => {
-  const router = useRouter();
+  const localWatchList = JSON.parse(localStorage.getItem("watchlist") || "[]");
 
-  const refreshData = () => {
+  const router = useRouter();
+  if (localWatchList.indexOf(id) !== -1) action = "remove";
+  const handleClick = (e) => {
+    e.preventDefault();
+    addToLocalWatchlist(id, action);
     router.refresh();
   };
   return (
@@ -50,16 +50,7 @@ const AddOrRemoveWatchList = ({ id, action }: AddOrRemoveWatchListProps) => {
       }`}
       arrow
     >
-      <div
-        className={styles.favoritesIcon}
-        onClick={(e) => {
-          e.preventDefault();
-          addToWatchlist(id, action);
-          if (action == "remove") {
-            refreshData();
-          }
-        }}
-      >
+      <div className={styles.favoritesIcon} onClick={handleClick}>
         {action == "add" ? <AddIcon></AddIcon> : <RemoveIcon></RemoveIcon>}
       </div>
     </Tooltip>

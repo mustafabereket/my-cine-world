@@ -24,7 +24,6 @@ const MovieDetails = async (props: { params: tParams }) => {
   } = await getMovieByID(id);
 
   const { backdrops, logos, posters } = await getMovieImagesByID(id);
-  console.log("production_countries", production_countries);
   return (
     <div className={style.movieDetailsContainer}>
       <h1>{title}</h1>
