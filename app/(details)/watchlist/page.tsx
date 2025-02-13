@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import style from "./page.module.scss";
 import BackButton from "../../components/ui/BackButton/BackButton";

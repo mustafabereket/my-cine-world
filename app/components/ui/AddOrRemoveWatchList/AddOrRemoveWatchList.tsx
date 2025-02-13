@@ -5,9 +5,11 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import Tooltip from "@mui/material/Tooltip";
 import { useRouter } from "next/navigation";
+import { getLocalStorage } from "@/app/utils/providers/helpers";
+import { setLocalStorage } from "../../../utils/providers/helpers";
 
 const addToLocalWatchlist = async (id: number, action: "add" | "remove") => {
-  const localWatchList = JSON.parse(localStorage.getItem("watchlist") || "[]");
+  const localWatchList = getLocalStorage("watchlist");
 
   if (action === "add") {
     const index = localWatchList.indexOf(id);
@@ -17,7 +19,7 @@ const addToLocalWatchlist = async (id: number, action: "add" | "remove") => {
     if (index > -1) localWatchList.splice(index, 1);
   }
 
-  localStorage.setItem("watchlist", JSON.stringify(localWatchList));
+  setLocalStorage("watchlist", localWatchList);
 };
 
 type AddOrRemoveWatchListProps = {
@@ -26,7 +28,7 @@ type AddOrRemoveWatchListProps = {
 };
 
 const AddOrRemoveWatchList = ({ id, action }: AddOrRemoveWatchListProps) => {
-  const localWatchList = JSON.parse(localStorage.getItem("watchlist") || "[]");
+  const localWatchList = getLocalStorage("watchlist");
 
   const router = useRouter();
   if (localWatchList.indexOf(id) !== -1) action = "remove";

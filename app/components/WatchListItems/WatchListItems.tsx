@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import MovieCard from "../MovieCard/MovieCard";
 import styles from "./WatchListItems.module.scss";
 import { Movie } from "@/app/types";
+import { getLocalStorage } from "../../utils/providers/helpers";
 
 const WatchListItems = () => {
   const [movies, setMovies] = useState([]);
@@ -23,19 +24,18 @@ const WatchListItems = () => {
     setMovies(data);
   };
 
-  const handleStorageChange = () => {
-    if (typeof window === "undefined") return;
-    const items = JSON.parse(localStorage.getItem("watchlist") || "[]");
-    retrieveMovies(items);
-  };
-
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    handleStorageChange();
+    const items = getLocalStorage("watchlist");
+    retrieveMovies(items);
 
     window.addEventListener("storage", handleStorageChange);
     return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
+
+  const handleStorageChange = () => {
+    const items = getLocalStorage("watchlist");
+    retrieveMovies(items);
+  };
 
   return (
     <div className={styles.mainContainer}>
