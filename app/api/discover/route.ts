@@ -1,17 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
 import { DISCOVER_MOVIES_BY_GENRE, headers } from "../../config";
-import { Movie } from "@/app/types";
 
 export const GET = async (req: NextRequest) => {
   console.log("YAOAOAOSDUASDLKADSKJL");
   try {
     const { searchParams } = new URL(req.url);
     const keys = searchParams.get("keys");
-    const page = searchParams.get("page");
+    const page = searchParams.get("page") || "1";
 
-    console.log(DISCOVER_MOVIES_BY_GENRE(keys));
+    console.log(DISCOVER_MOVIES_BY_GENRE(keys || ""));
 
-    const resp = await fetch(DISCOVER_MOVIES_BY_GENRE(keys, page), headers);
+    const resp = await fetch(
+      DISCOVER_MOVIES_BY_GENRE(keys || "", page),
+      headers
+    );
     const data = await resp.json();
 
     return new NextResponse(JSON.stringify(data), { status: 200 });

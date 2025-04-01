@@ -25,5 +25,5 @@ export const preImgURL = "https://www.themoviedb.org/t/p/w500";
 
 export const GET_WATCHLIST_MOVIES = `https://api.themoviedb.org/3/account/${ACCOUNT_ID}/watchlist/movies?language=en-US&page=1&sort_by=created_at.asc`;
 export const ADD_TO_WATCHLIST = `https://api.themoviedb.org/3/account/${ACCOUNT_ID}/watchlist`;
-export const DISCOVER_MOVIES_BY_GENRE = (text: string, page = 1) =>
+export const DISCOVER_MOVIES_BY_GENRE = (text: string, page = "1") =>
   `https://api.themoviedb.org/3/discover/movie?with_genres=${text}&page=${page}&sort_by=popularity.desc&language=en-US&include_adult=true&vote_count.gte=1000`;

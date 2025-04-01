@@ -3,10 +3,7 @@
 import styles from "./PopularGenres.module.scss";
 import React, { useState } from "react";
 import { Genre } from "@/app/types";
-import { getPopularGenres } from "@/app/api/movie-services";
-import GenreButton from "../ui/GenreButton/GenreButton";
-import { useQuery, QueryClient, useQueryClient } from "@tanstack/react-query";
-import Carousel from "../ui/Carousel/Carousel";
+import { useQuery } from "@tanstack/react-query";
 import MovieGrid from "../MovieGrid/MovieGrid";
 import Pagination from "../ui/Pagination/Pagination";
 
@@ -30,7 +27,6 @@ const fetchGenres = async () => {
 const PopularGenres = () => {
   // Convert this to be fetched immediately with ReactQuery
   // const { genres } = await getPopularGenres();
-  const queryClient = useQueryClient();
 
   const [selectedGenres, setSelectedGenres] = useState<Set<number>>(new Set());
   const [currentPage, setCurrentPage] = useState(1);
@@ -40,7 +36,7 @@ const PopularGenres = () => {
     queryFn: fetchGenres,
   });
 
-  const fetchDiscoverMovies = async (pageNum) => {
+  const fetchDiscoverMovies = async (pageNum: number) => {
     const keys = Array.from(selectedGenres).join(",");
     const resp = await fetch(`/api/discover?keys=${keys}&page=${pageNum}`);
     const data = await resp.json();
@@ -56,19 +52,22 @@ const PopularGenres = () => {
     queryKey: ["discoverMovies", Array.from(selectedGenres), currentPage],
     queryFn: () => fetchDiscoverMovies(currentPage),
     enabled: selectedGenres.size > 0,
-    keepPreviousData: true,
   });
 
-  const genres = data?.genres.filter((item) => item.id !== 12); // adventure exception
+  const genres = data?.genres.filter((item: Genre) => item.id !== 12); // adventure exception
 
-  const handleClick = (id) => {
+  const handleClick = (id: number) => {
     const tempSet = new Set(selectedGenres);
-    tempSet.has(id) ? tempSet.delete(id) : tempSet.add(id);
+    if (tempSet.has(id)) {
+      tempSet.delete(id);
+    } else {
+      tempSet.add(id);
+    }
     setSelectedGenres(tempSet);
     setCurrentPage(1);
   };
 
-  const handlePageChange = (pageNum) => {
+  const handlePageChange = (pageNum: number) => {
     setCurrentPage(pageNum);
   };
   const totalPages = discoverMovies?.total_pages ?? 0;
@@ -112,6 +111,8 @@ const PopularGenres = () => {
         />
       )}
       {discoverMovies && <MovieGrid movies={discoverMovies.results} />}
+      {discoverIsLoading && <div>Loading...</div>}
+      {errorIsLoading && <div>ERROR LOADING</div>}
       {discoverMovies && (
         <Pagination
           currentPage={currentPage}

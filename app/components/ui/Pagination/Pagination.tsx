@@ -1,10 +1,21 @@
 import React from "react";
 import styles from "./Pagination.module.scss";
 import classNames from "classnames";
-const Pagination = ({ totalPage, currentPage, onPageChange }) => {
+
+type PaginationProps = {
+  totalPage: number;
+  currentPage: number;
+  onPageChange: (pageNum: number) => void;
+};
+
+const Pagination = ({
+  totalPage,
+  currentPage,
+  onPageChange,
+}: PaginationProps) => {
   const pages = new Array(totalPage).fill(true);
 
-  const handleClick = (pageNum) => {
+  const handleClick = (pageNum: number) => {
     onPageChange(pageNum);
   };
 

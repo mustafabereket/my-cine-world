@@ -7,7 +7,7 @@ const MovieGrid = ({ movies }: { movies: Movie[] }) => {
   return (
     <div className={styles.mainContainer}>
       {movies.map((movie) => (
-        <MovieCard key={movie.id} movie={movie} size="sm" />
+        <MovieCard key={movie.id} movie={movie} />
       ))}
     </div>
   );

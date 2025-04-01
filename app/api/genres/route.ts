@@ -1,6 +1,6 @@
 import { GET_GENRES_URL, headers } from "@/app/config";
-import { NextRequest, NextResponse } from "next/server";
-export const GET = async (req: NextRequest) => {
+import { NextResponse } from "next/server";
+export const GET = async () => {
   try {
     const resp = await fetch(GET_GENRES_URL, {
       ...headers,
