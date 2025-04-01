@@ -25,6 +25,7 @@ export interface MovieResponse {
 export interface Genre {
   id: number;
   name: string;
+  selected: boolean;
 }
 
 export type Poster = {

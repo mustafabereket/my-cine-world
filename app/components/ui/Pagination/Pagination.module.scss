@@ -1,0 +1,18 @@
+.mainContainer {
+  display: flex;
+  width: 100%;
+  margin: 20px auto;
+  gap: 2px;
+  justify-content: center;
+
+  .pButton {
+    width: 40px;
+    display: flex;
+    text-decoration: underline;
+    cursor: pointer;
+    line-height: 4px;
+  }
+  .active {
+    color: darkblue;
+  }
+}

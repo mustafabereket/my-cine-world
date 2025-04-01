@@ -18,7 +18,12 @@
     margin-bottom: 60px;
     text-wrap: nowrap;
   }
+
+  .selected {
+    background-color: var(--secondary-color);
+  }
 }
+
 @media (max-width: 976px) {
   .mainContainer {
     .genreContainer {

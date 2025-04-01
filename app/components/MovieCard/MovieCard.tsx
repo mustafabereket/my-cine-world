@@ -21,7 +21,7 @@ const MovieCard = ({ movie, query, action = "add" }: MovieCardProps) => {
       <div className={styles.imageContainer}>
         <AddOrRemoveWatchList id={id} action={action} />
         <Image
-          alt={title}
+          alt={title || "No alt title found"}
           src={preImgURL + poster_path}
           width={300}
           height={400}
