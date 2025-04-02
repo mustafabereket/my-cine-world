@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Pagination.module.scss";
 import classNames from "classnames";
+import { useState } from "react";
 
 type PaginationProps = {
   totalPage: number;
@@ -13,27 +14,35 @@ const Pagination = ({
   currentPage,
   onPageChange,
 }: PaginationProps) => {
-  const pages = new Array(totalPage).fill(true);
-
+  const pages = Array.from({ length: totalPage }, (_, i) => i + 1);
   const handleClick = (pageNum: number) => {
     onPageChange(pageNum);
   };
 
   return (
     <div className={styles.mainContainer}>
-      {pages.map((page, index) => {
-        return (
-          <div
-            className={classNames(styles.pButton, {
-              [styles.active]: index + 1 === currentPage,
-            })}
-            onClick={() => handleClick(index + 1)}
-            key={index + 1 + Math.random()}
-          >
-            {index + 1}
-          </div>
-        );
-      })}
+      {pages
+        .slice(
+          currentPage < 5 ? 0 : currentPage - 5,
+          currentPage <= 5
+            ? totalPage > 10
+              ? 10
+              : totalPage
+            : Math.min(totalPage, currentPage + 5)
+        )
+        .map((page, index) => {
+          return (
+            <button
+              className={classNames(styles.pButton, {
+                [styles.active]: page === currentPage,
+              })}
+              onClick={() => handleClick(page)}
+              key={index}
+            >
+              {page}
+            </button>
+          );
+        })}
     </div>
   );
 };

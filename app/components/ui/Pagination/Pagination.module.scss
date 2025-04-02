@@ -11,8 +11,13 @@
     text-decoration: underline;
     cursor: pointer;
     line-height: 4px;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    padding: 20px;
   }
   .active {
     color: darkblue;
+    background-color: blueviolet;
   }
 }
