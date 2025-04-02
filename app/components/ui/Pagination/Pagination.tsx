@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./Pagination.module.scss";
 import classNames from "classnames";
-import { useState } from "react";
 
 type PaginationProps = {
   totalPage: number;
