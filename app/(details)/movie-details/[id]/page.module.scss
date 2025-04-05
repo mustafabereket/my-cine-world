@@ -5,7 +5,6 @@
   align-items: center;
   margin-top: 40px;
   gap: 20px;
-  width: 80fr;
   .heading {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -21,19 +20,72 @@
     }
     .poster {
       padding: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
   .overview {
     border: 2px solid var(--primary-color);
+    border-radius: 12px;
     margin-top: 20px;
     width: 902px;
-    padding: 8px;
+    padding: 16px;
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .infoField {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .infoTitle {
+    font-size: 18px;
   }
 
   .posters {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 12px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .movieDetailsContainer {
+    .overview {
+      width: 480px;
+    }
+    .heading {
+      display: flex;
+      flex-direction: column;
+      .headerSideBar {
+        border-left: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 550px) {
+  .movieDetailsContainer {
+    .overview {
+      width: 350px;
+    }
+
+    .heading {
+      max-width: 350px;
+      display: flex;
+      flex-direction: column;
+      .headerSideBar {
+        border-left: none;
+      }
+    }
   }
 }

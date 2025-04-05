@@ -38,12 +38,12 @@ const MovieDetails = async (props: { params: tParams }) => {
           />
         </div>
         <div className={style.headerSideBar}>
-          <div>
-            original title:{" "}
+          <div className={style.infoField}>
+            <div className={style.infoTitle}>original title</div>
             <span className="genreButton">{original_title}</span>
           </div>
-          <div>
-            original country:{" "}
+          <div className={style.infoField}>
+            <div className={style.infoTitle}>original country</div>
             <span className="genreButton">
               {production_countries?.[0]
                 ? production_countries[0].name
@@ -52,24 +52,26 @@ const MovieDetails = async (props: { params: tParams }) => {
                 : "unknown"}
             </span>
           </div>
-          <div>
-            release date: <span className="genreButton">{release_date}</span>
+          <div className={style.infoField}>
+            <div className={style.infoTitle}>release date</div>
+            <span className="genreButton">{release_date}</span>
           </div>
-          <div>
-            imdb score: <span className="genreButton">{vote_average}</span>
+          <div className={style.infoField}>
+            <div className={style.infoTitle}>imdb score</div>
+            <span className="genreButton">{vote_average}</span>
           </div>
-          <div>
-            genres:{" "}
+          <div className={style.infoField}>
+            <div className={style.infoTitle}>genres</div>
             {genres?.map((genre: Genre) => (
-              <span className="genreButton" key={genre.id}>
+              <div className="genreButton" key={genre.id}>
                 {genre.name || "unknown genre"}
-              </span>
+              </div>
             ))}
           </div>
 
           {homepage && (
-            <div>
-              movie web site:{" "}
+            <div className={style.infoField}>
+              <div className={style.infoTitle}>movie web site</div>
               <span className="genreButton">
                 <a href={homepage}>{homepage}</a>
               </span>
@@ -77,15 +79,18 @@ const MovieDetails = async (props: { params: tParams }) => {
           )}
         </div>
       </div>
-      <div className={style.overview}>{overview}</div>
+      <div className={style.overview}>
+        <div className={style.infoTitle}>Story</div>
+        {overview}
+      </div>
       <div className={style.posters}>
         {backdrops?.map((obj: { file_path: React.Key | null | undefined }) => (
           <div key={obj.file_path}>
             <Image
               alt={original_title || "no alt tag found"}
               src={preImgURL + obj.file_path}
-              width={300}
-              height={300}
+              width={350}
+              height={350}
             />
           </div>
         ))}
@@ -94,8 +99,8 @@ const MovieDetails = async (props: { params: tParams }) => {
             <Image
               alt={original_title || "no alt tag found"}
               src={preImgURL + obj.file_path}
-              width={300}
-              height={300}
+              width={350}
+              height={350}
             />
           </div>
         ))}
@@ -104,8 +109,8 @@ const MovieDetails = async (props: { params: tParams }) => {
             <Image
               alt={original_title || "no alt tag found"}
               src={preImgURL + obj.file_path}
-              width={300}
-              height={300}
+              width={350}
+              height={350}
             />
           </div>
         ))}
