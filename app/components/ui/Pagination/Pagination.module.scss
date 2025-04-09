@@ -21,3 +21,12 @@
     background-color: blueviolet;
   }
 }
+
+@media (max-width: 500px) {
+  .mainContainer {
+    .pButton {
+      width: 20px;
+      padding: 14px;
+    }
+  }
+}

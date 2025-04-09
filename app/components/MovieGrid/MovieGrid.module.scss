@@ -7,3 +7,9 @@
   justify-content: center;
   padding: 20px;
 }
+
+@media (max-width: 500px) {
+  .mainContainer {
+    width: 100%;
+  }
+}
